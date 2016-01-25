@@ -1,0 +1,105 @@
+import time
+blanks_to_replace = ["___1___", "___2___", "___3___"]
+easy_text = "___1___ refers to the rules that govern what statements are 'legal' in a language. A ___2___ is a titled container that holds information while a ___3___ is just text."
+medium_text = "medium difficulty ___1___ refers to the ___2___ that govern what ___3___."
+hard_text = "hard difficulty ___1___ refers to the ___2___ that govern what ___3___."
+EA_1 = "grammar"
+EA_2 = "variable"
+EA_3 = "string"
+
+
+def answer_in_text(answer, blanks_to_replace):
+    for text in blanks_to_replace:
+        if text in answer:
+            return text
+    return None
+
+def start_over_easy():
+    print "Please start from the top"
+    print easy_section(easy_text, blanks_to_replace)
+    return None
+
+def easy_section(easy_text, blanks_to_replace):
+    replaced = []
+    easy_text = easy_text.split()
+    for answer in easy_text:
+        replacement = answer_in_text(answer, blanks_to_replace)
+        if replacement != None:
+            user_input = raw_input("Fill in the blank: " + replacement + " ")
+            if user_input != EA_1:
+                print "incorrect"
+                return start_over_easy()
+            else:
+                print "correct"
+            answer = answer.replace(replacement, user_input)
+            replaced.append(answer)
+        else:
+            replaced.append(answer)    
+    replaced = " ".join(replaced)
+    print 
+    time.sleep(1)
+    print "results:"
+    print 
+    return replaced    
+#print easy_section(easy_text, blanks_to_replace)
+
+def beg_of_quiz():
+    print "Welcome to a quiz designed to measure your understanding of Python"
+    print "You will be asked to fill-in-the-blanks in a number of statements."
+    while True:
+        quiz_difficulty_level = raw_input("Please select a game difficulty by typing it in! Possible choices include easy, medium, and hard.")
+        if quiz_difficulty_level.lower() == "easy":
+            print "Here is your easy quiz. Fill-in-the-Blanks for ___1___, ___2___, and ___3___ in the following sentence."
+            print 
+            time.sleep(1)
+            print 
+            print easy_text
+            print
+            print easy_section(easy_text, blanks_to_replace)
+        if quiz_difficulty_level.lower() == "medium":
+            print "Here is your medium quiz. Fill-in-the-Blanks for ___1___, ___2___, and ___3___ in the following sentence."
+            print 
+            time.sleep(3)
+            print 
+            print medium_text
+            print 
+        if quiz_difficulty_level.lower() == "hard":
+            print "Here is your hard quiz. Fill-in-the-Blanks for ___1___, ___2___, and ___3___ in the following sentence."
+            print 
+            time.sleep(3)
+            print 
+            print hard_text
+            print
+        else:
+            print "you must choose easy, medium or hard!"
+print beg_of_quiz()
+    # List of replacement words for text
+    # Checks if a vocabulary word the user chooses is in the easy text. 
+
+def vocab_in_text_easy(vocab, blanks_to_replace):
+        for text in blanks_to_replace:
+            if text in vocab:
+                return text
+        return None
+
+def easy_section(easy_text, blanks_to_replace):
+    replaced = []
+    easy_text = easy_text.split()
+    for vocab in easy_text:
+        replacement = vocab_in_text_easy(vocab, blanks_to_replace)
+        if replacement != None:
+            user_input = raw_input("Fill in the blank: " + replacement + " ")
+            vocab = vocab.replace(replacement, user_input)
+            replaced.append(vocab)
+        else:
+            replaced.append(vocab)
+    replaced = " ".join(replaced)
+    print 
+    time.sleep(2)
+    print "results"
+    return replaced
+    
+print easy_section(easy_text, blanks_to_replace)
+
+
+
